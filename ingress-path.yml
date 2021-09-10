@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: ingress-test
+  annotations:
+    kubernetes.io/ingress.class: alb 
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+#    alb.ingress.kubernetes.io/security-groups: sg-01c7aada6563d245c
+spec:
+  rules:
+  - host: test-1.test-aicc.xyz 
+    http:
+      paths:
+      - path: /* 
+        backend:
+          serviceName: apache-svc 
+          servicePort: 80
+  - host: test-2.test-aicc.xyz
+    http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: hello-svc
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: nginx-svc
+          servicePort: 80

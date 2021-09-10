@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: game
+  annotations:
+    kubernetes.io/ingress.class: alb 
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+#    alb.ingress.kubernetes.io/security-groups: sg-01c7aada6563d245c
+spec:
+  rules:
+  - host: test-3.test-aicc.xyz 
+    http:
+      paths:
+      - path: /* 
+        backend:
+          serviceName: game-svc 
+          servicePort: 80
+  - host: test-aicc.xyz
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: game-svc
+          servicePort: 80
+  - host: www.test-aicc.xyz
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: game-svc
+          servicePort: 80
