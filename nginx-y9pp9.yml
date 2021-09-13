@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: nginx-y9pp9
-        image: y9pp9/nginx-y9pp9:2
+        image: y9pp9/nginx-y9pp9:3
         ports:
         - containerPort: 80
 

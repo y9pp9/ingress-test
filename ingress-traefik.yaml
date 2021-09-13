@@ -11,6 +11,9 @@ spec:
   - hosts:
     - y9pp9.top
     secretName: y9pp9-tls
+  backend:
+        serviceName: nginx-y9pp9-svc
+        servicePort: 80
   rules:
   - host: a.y9pp9.top
     http:
@@ -26,5 +29,10 @@ spec:
         backend:
           serviceName: apache-svc
           servicePort: 80
+      - path: /y9pp9
+        backend:
+          serviceName: nginx-y9pp9-svc
+          servicePort: 80
+
 
 
